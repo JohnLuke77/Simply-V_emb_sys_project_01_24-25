@@ -30,7 +30,7 @@ endif
 # Targets #
 ###########
 
-all: bin/$(PROGRAM_NAME).bin
+all: bin/$(PROGRAM_NAME).bin bin/$(PROGRAM_NAME).dump
 
 $(OBJ_DIR)/%.o: %.c 
 	@echo "\n[OBJ] Creating OBJs from src c files"
