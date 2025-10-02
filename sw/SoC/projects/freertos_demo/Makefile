@@ -68,7 +68,6 @@ OBJDUMP     = $(RV_PREFIX)objdump
 OBJCOPY     = $(RV_PREFIX)objcopy
 
 CPPFLAGS = \
-	-D__riscv_float_abi_soft \
 	-I $(FREERTOS_PORT_ROOT)/chip_specific_extensions/RISCV_no_extensions
 CFLAGS      = -march=rv32imd_zicsr_zifencei -O0 -c 
 LDFLAGS     = $(LIB_OBJ_LIST) -nostdlib -T$(LD_SCRIPT) -lgcc -lc
