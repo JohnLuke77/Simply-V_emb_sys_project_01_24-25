@@ -2,6 +2,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
+
 #define TASK1_PRIORITY (tskIDLE_PRIORITY + 1)
 #define TASK2_PRIORITY (tskIDLE_PRIORITY + 1)
 
@@ -12,12 +13,18 @@ static void Task1(void *pvParameters) {
 
     uint32_t a = 0;
     uint32_t b = 0;
-    configASSERT( ( ( uint32_t ) pvParameters ) == 1 );
+    configASSERT( ( ( uint32_t ) pvParameters ) == TASK1_PARAMETER );
+    
+    size_t free_heap=0;
+    free_heap=xPortGetFreeHeapSize();
+    configASSERT( free_heap > 0 );
 
     while (1) {
     
+    	free_heap=xPortGetFreeHeapSize();
+        configASSERT( free_heap > 0 );
+        
     	a=b+(uint32_t)pvParameters;
-        __asm("ebreak");
         taskYIELD();
         
     }
@@ -27,12 +34,18 @@ static void Task2(void *pvParameters) {
 
     uint32_t a = 0;
     uint32_t b = 3;
-    configASSERT( ( ( uint32_t ) pvParameters ) == 2 );
+    configASSERT( ( ( uint32_t ) pvParameters ) == TASK2_PARAMETER );
+    
+    size_t free_heap=0;
+    free_heap=xPortGetFreeHeapSize();
+    configASSERT( free_heap > 0 );
 
     while (1) {
     
+    	    free_heap=xPortGetFreeHeapSize();
+            configASSERT( free_heap > 0 );
+    
 	    a=b-(uint32_t)pvParameters;
-	    __asm("ebreak");
 	    taskYIELD();
 	    
    } 
@@ -40,21 +53,39 @@ static void Task2(void *pvParameters) {
 }
 
 void vAssertCalled(const char *file, int line) {
-    __asm("ebreak");
+
+     const char *f=file;
+     int l=line;
+    
+}
+
+void vPortSetupTimerInterrupt( void ){
+
+//define if you need to set the timer interrupt,otherwise an empty definition is still necessary to overwrite the weak definition in port.c and to avoid
+//unwanted jumps to reset handler
+
 }
 
 int main(){
 
     /* Insert your code here */
-    
-    xTaskCreate(Task1,"Task1", configMINIMAL_STACK_SIZE,
+       
+    BaseType_t mem_1=xTaskCreate(Task1,"t1", configMINIMAL_STACK_SIZE,
 			(void *)TASK1_PARAMETER,
 			TASK1_PRIORITY,
 			NULL);
 
-    xTaskCreate(Task2,"Task2", configMINIMAL_STACK_SIZE,
+    BaseType_t mem_2=xTaskCreate(Task2,"t2", configMINIMAL_STACK_SIZE,
 			(void *)TASK2_PARAMETER, TASK2_PRIORITY,
 			NULL);
+			
+    configASSERT( mem_1 == pdPASS );
+    
+    configASSERT( mem_2 == pdPASS );
+    
+    size_t free_heap=xPortGetFreeHeapSize();
+    
+    configASSERT( free_heap > 0 );
 			    
     vTaskStartScheduler();
 
