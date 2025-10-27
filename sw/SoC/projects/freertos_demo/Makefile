@@ -54,8 +54,8 @@ LD_SCRIPT     = ld/user.ld
 # Libraries #
 #############
 
-LIB_OBJ_LIST     =
-LIB_INC_LIST     = 
+LIB_OBJ_LIST    =
+LIB_INC_LIST    =
 
 #############
 # Toolchain #
