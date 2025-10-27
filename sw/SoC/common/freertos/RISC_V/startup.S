@@ -69,7 +69,7 @@ _reset_handler:
   #####################
 
   # Set mtvec to vectored mode
-  la a0, _vector_table_start  # Load vector table base address
+  la a0, _trap_vectors_start  # Load trap vectors base address
   li a1, 1                    # Set vectored mode bit
   or a1, a1, a0
   csrw mtvec, a1              # Commit on mtvec register
