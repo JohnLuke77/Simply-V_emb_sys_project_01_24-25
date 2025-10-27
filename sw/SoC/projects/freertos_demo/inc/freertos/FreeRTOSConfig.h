@@ -27,7 +27,6 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
-
 /*-----------------------------------------------------------
  * Application specific definitions.
  *
@@ -53,7 +52,7 @@
 #define configTICK_RATE_HZ				( ( TickType_t ) 1 )
 #define configMAX_PRIORITIES			( 7 )
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 128 )
-#define configTOTAL_HEAP_SIZE			( ( size_t ) 4096 )
+#define configTOTAL_HEAP_SIZE			( ( size_t ) 8192 )
 #define configMAX_TASK_NAME_LEN			( 16 )
 #define configUSE_TRACE_FACILITY		0
 #define configUSE_16_BIT_TICKS			0
@@ -78,13 +77,13 @@ void vAssertCalled(const char *file, int line);
 #define configMAX_CO_ROUTINE_PRIORITIES ( 2 )
 
 /* Software timer definitions. */
-#define configUSE_TIMERS				1
+#define configUSE_TIMERS				0
 #define configTIMER_TASK_PRIORITY		( configMAX_PRIORITIES - 1 )
 #define configTIMER_QUEUE_LENGTH		6
 #define configTIMER_TASK_STACK_DEPTH	( 110 )
 
 /* RISC-V definitions. */
-/* #define configISR_STACK_SIZE_WORDS		2048    */
+#define configISR_STACK_SIZE_WORDS		1024    
 
 /* Task priorities.  Allow these to be overridden. */
 #ifndef uartPRIMARY_PRIORITY
@@ -101,7 +100,7 @@ to exclude the API function. */
 #define INCLUDE_vTaskDelayUntil				1
 #define INCLUDE_vTaskDelay					1
 #define INCLUDE_eTaskGetState				1
-#define INCLUDE_xTimerPendFunctionCall		1
+#define INCLUDE_xTimerPendFunctionCall		0
 #define INCLUDE_xTaskAbortDelay				1
 #define INCLUDE_xTaskGetCurrentTaskHandle	1
 #define INCLUDE_xTaskGetHandle				1
