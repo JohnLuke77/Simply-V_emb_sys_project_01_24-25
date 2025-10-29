@@ -25,7 +25,6 @@ FREERTOS_PORT_ROOT += \
 FREERTOS_INC_DIR += \
   -I inc/freertos \
   -I inc/freertos/common \
-  -I inc/freertos/Minimal \
   -I $(FREERTOS_PORT_ROOT)
 DEMO_SRC_DIR        = src/demo
 OBJ_DIR        = obj
