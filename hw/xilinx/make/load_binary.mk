@@ -9,7 +9,7 @@ include ${XILINX_ROOT}/make/config.mk
 XILINX_SCRIPTS_LOAD_ROOT := ${XILINX_SCRIPT_ROOT}/load_binary
 
 # Default example to run
-EXAMPLE ?= hello_world
+EXAMPLE ?= blinky
 
 ###############
 # Load Binary #
@@ -67,7 +67,7 @@ OPENOCD_SCRIPT ?= ${XILINX_SCRIPTS_LOAD_ROOT}/openocd.cfg
 
 openocd_run:
 	@echo "[INFO] Make sure to kill any instance of hw_server running on the target USB device"
-	${OPENOCD} -f ${OPENOCD_SCRIPT}
+	${OPENOCD} -d -f ${OPENOCD_SCRIPT}
 
 ##################################
 # Load ELF - Debugger and Loader #

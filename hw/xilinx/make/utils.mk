@@ -32,8 +32,8 @@ open_ila:
 		-source ${XILINX_SCRIPTS_UTILS_ROOT}/set_ila_trigger.tcl
 
 # Read back from address
-OFFSET	?= 0x40000
-NUM_BYTES ?= 16
+OFFSET	?= 0x00000
+NUM_BYTES ?= 64000
 readback_jtag2axi:
 	${XILINX_VIVADO_ENV} ${XILINX_VIVADO} \
 	-source ${XILINX_SCRIPTS_UTILS_ROOT}/open_hw_manager.tcl \
