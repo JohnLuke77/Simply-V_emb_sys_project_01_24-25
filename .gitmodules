@@ -7,3 +7,6 @@
 [submodule "sw/SoC/projects/freertos_demo_queue"]
 	path = sw/SoC/projects/freertos_demo_queue
 	url = https://github.com/JohnLuke77/freertos_demo_queue
+[submodule "sw/SoC/common/freertos"]
+	path = sw/SoC/common/freertos
+	url = https://github.com/JohnLuke77/freertos
